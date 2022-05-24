@@ -1,7 +1,6 @@
 let car: Car;
 
 function submitCar() {
-    let errores = 0;
     let plateInput = <HTMLInputElement>document.getElementById("plateInput");
     let brandInput = <HTMLInputElement>document.getElementById("brandInput");
     let colorInput = <HTMLInputElement>document.getElementById("colorInput");
@@ -23,22 +22,16 @@ function submitCar() {
     const expregMatricula = /^[A-Z]{1,4}$/;
     const expregMarca = /^[A-Z]$/;
     const expregColor = /^[A-Z]$/;
-    let valido = true;
+    let errores: string = ''; 
 
-    if (!expregMatricula.test(plateInput.value.toUpperCase())) {
-        alert("La matrícula NO es correcta");
-        valido = false;
-    }
-    if (!expregMarca.test(brandInput.value.toUpperCase())) {
-        alert("La marca NO es correcta");
-        valido = false;
-    }
-    if (!expregColor.test(colorInput.value.toUpperCase())) {
-        alert("El color NO es correcto");
-        valido = false;
-    }
+    if (!expregMatricula.test(plateInput.value.toUpperCase())) errores += "La matrícula NO es correcta\n";
+    if (!expregMarca.test(brandInput.value.toUpperCase())) errores += "La marca NO es correcta\n";
+    if (!expregMarca.test(colorInput.value.toUpperCase())) errores += "El color NO es correcto\n";
 
-    if (valido) {
+
+    if (errores.length) {
+        alert(errores);
+    } else {
         car = new Car(plateInput.value, colorInput.value, brandInput.value);
         showVehicle();
         showWheelForm();

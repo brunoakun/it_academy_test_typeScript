@@ -1,6 +1,7 @@
 "use strict";
 var car;
 function submitCar() {
+    var errores = '';
     var plateInput = document.getElementById("plateInput");
     var brandInput = document.getElementById("brandInput");
     var colorInput = document.getElementById("colorInput");
@@ -21,12 +22,11 @@ function submitCar() {
     var expregMatricula = /^[A-Z]{1,4}$/;
     var expregMarca = /^[A-Z]$/;
     var expregColor = /^[A-Z]$/;
-    var errores = '';
     if (!expregMatricula.test(plateInput.value.toUpperCase()))
         errores += "La matrícula NO es correcta\n";
     if (!expregMarca.test(brandInput.value.toUpperCase()))
         errores += "La marca NO es correcta\n";
-    if (!expregMarca.test(colorInput.value.toUpperCase()))
+    if (!expregColor.test(colorInput.value.toUpperCase()))
         errores += "El color NO es correcto\n";
     if (errores.length) {
         alert(errores);
